@@ -15,3 +15,16 @@ def create_product(database: Session, product: ProductCreate):
     database.commit()
     database.refresh(database_product)
     return database_product
+
+
+def update_product(database: Session, product_id: int, product: ProductUpdate):
+    database_product = database.query(DBProduct).filter(DBProduct.id == product_id).first()
+
+    if database_product:
+        for attr, value in product.model_dump().items():
+            setattr(database_product, attr, value)
+
+        database.commit()
+        database.refresh(database_product)
+
+    return database_product
