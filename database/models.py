@@ -10,4 +10,4 @@ class DBProduct(Base):
     name = Column(String(255), nullable=False, unique=True)
     description = Column(String(511), nullable=False)
     price = Column(Float)
-    created_at = Column(DateTime, default=datetime.utcnow)
+    # created_at = Column(DateTime, default=datetime.utcnow)
