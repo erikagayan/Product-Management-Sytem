@@ -28,3 +28,13 @@ def update_product(database: Session, product_id: int, product: ProductUpdate):
         database.refresh(database_product)
 
     return database_product
+
+
+def delete_product(database: Session, product_id: int):
+    database_product = database.query(DBProduct).filter(DBProduct.id == product_id).first()
+
+    if database_product:
+        database.delete(database_product)
+        database.commit()
+
+    return database_product
