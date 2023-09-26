@@ -26,3 +26,8 @@ def read_product(product_id: int, database: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Product not found")
 
     return product
+
+
+@app.post("/products/", response_model=schemas.Product)
+def create_product(product: schemas.ProductCreate, database: Session = Depends(get_db)):
+    return crud.create_product(database, product)
