@@ -1,8 +1,14 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import Session
 
 from database.engine import SessionLocal
 
 
-async def get_db() -> AsyncSession:
-    async with SessionLocal() as session:
-        yield session
+def get_db() -> Session:
+    db = SessionLocal()
+
+    try:
+        yield db
+    finally:
+        db.close()
+
