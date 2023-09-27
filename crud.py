@@ -38,3 +38,28 @@ def delete_product(database: Session, product_id: int):
         database.commit()
 
     return database_product
+
+
+def increase_product_quantity(database: Session, product_id: int, quantity: int):
+    database_product = database.query(DBProduct).filter(DBProduct.id == product_id).first()
+
+    if database_product:
+        database_product.quantity += quantity
+        database.commit()
+        database.refresh(database_product)
+
+    return database_product
+
+
+def decrease_product_quantity(database: Session, product_id: int, quantity: int):
+    database_product = database.query(DBProduct).filter(DBProduct.id == product_id).first()
+
+    if database_product:
+        if database_product.quantity >= quantity:
+            database_product.quantity -= quantity
+            database.commit()
+            database.refresh(database_product)
+        else:
+            raise ValueError("Not enough quantity in stock")
+
+    return database_product
