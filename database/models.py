@@ -10,4 +10,5 @@ class DBProduct(Base):
     name = Column(String(255), nullable=False, unique=True)
     description = Column(String(511), nullable=False)
     price = Column(Float)
+    quantity = Column(Integer, default=0)
     created_at = Column(Date, default=datetime.utcnow)

@@ -25,7 +25,7 @@ def upgrade() -> None:
     sa.Column('name', sa.String(length=255), nullable=False),
     sa.Column('description', sa.String(length=511), nullable=False),
     sa.Column('price', sa.Float(), nullable=True),
-    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('created_at', sa.Date(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
