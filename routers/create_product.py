@@ -1,9 +1,12 @@
 import crud
 import schemas
-from . import router
+from fastapi import Depends
+from fastapi import APIRouter
 from dependencies import get_db
 from sqlalchemy.orm import Session
-from fastapi import Depends
+
+
+router = APIRouter()
 
 
 @router.post("/products/", response_model=schemas.Product, operation_id="create_product")

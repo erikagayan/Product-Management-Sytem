@@ -1,9 +1,12 @@
 import crud
 import schemas
-from . import router
+from fastapi import APIRouter
 from dependencies import get_db
 from sqlalchemy.orm import Session
 from fastapi import Depends, HTTPException
+
+
+router = APIRouter()
 
 
 @router.delete("/products/{product_id}", response_model=schemas.Product, operation_id="delete_product")
