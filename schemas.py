@@ -7,6 +7,7 @@ class ProductBase(BaseModel):
     description: str
     price: float
     quantity: int
+    category_id: int
 
 
 class ProductCreate(ProductBase):
@@ -20,6 +21,21 @@ class ProductUpdate(ProductBase):
 class Product(ProductBase):
     id: int
     created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+class CategoryBase(BaseModel):
+    name: str
+
+
+class CategoryCreate(CategoryBase):
+    pass
+
+
+class Category(CategoryBase):
+    id: int
 
     class Config:
         from_attributes = True
