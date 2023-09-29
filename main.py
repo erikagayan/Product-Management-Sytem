@@ -5,7 +5,8 @@ from routers import (
     update_product,
     delete_product,
     increase_quantity,
-    decrease_quantity
+    decrease_quantity,
+    create_category
 )
 
 
@@ -17,3 +18,4 @@ app.include_router(update_product.router)
 app.include_router(delete_product.router)
 app.include_router(increase_quantity.router)
 app.include_router(decrease_quantity.router)
+app.include_router(create_category.router)

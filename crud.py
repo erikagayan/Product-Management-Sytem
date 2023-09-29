@@ -1,8 +1,8 @@
 from datetime import datetime
 
 from sqlalchemy.orm import Session
-from database.models import DBProduct
-from schemas import ProductCreate, ProductUpdate
+from database.models import DBProduct, DBCategory
+from schemas import ProductCreate, ProductUpdate, CategoryCreate
 
 
 def get_product_by_id(database: Session, product_id: int):
@@ -63,3 +63,11 @@ def decrease_product_quantity(database: Session, product_id: int, quantity: int)
             raise ValueError("Not enough quantity in stock")
 
     return database_product
+
+
+def create_category(database: Session, category: CategoryCreate):
+    db_category = DBCategory(**category.model_dump())
+    database.add(db_category)
+    database.commit()
+    database.refresh(db_category)
+    return db_category
